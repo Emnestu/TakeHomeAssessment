@@ -5,7 +5,7 @@ using ContactSystem.Application.Services;
 using ContactSystem.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Granite.Controllers.Contacts
+namespace ContactSystem.API.Controllers
 {
     [Route("api/v{version:apiVersion}/Contacts")]
     [ApiExplorerSettings(GroupName = "Contacts")]
@@ -13,13 +13,13 @@ namespace Granite.Controllers.Contacts
     [ApiVersion("1.0")]
     public class ContactsController : ControllerBase
     {
-        private readonly IContactsService _ContactsService;
-        private readonly IOfficesService _officeService;
+        private readonly IContactsService _contactsService;
+        private readonly IOfficesService _officesService;
 
-        public ContactsController(IContactsService ContactsService, OfficeService officeService)
+        public ContactsController(IContactsService contactsService, IOfficesService officesService)
         {
-            _ContactsService = ContactsService;
-            _officeService = officeService;
+            _contactsService = contactsService;
+            _officesService = officesService;
         }
 
         /// <summary>

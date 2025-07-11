@@ -1,8 +1,8 @@
-using ContactAdministrationSystem.Infrastructure;
 using ContactSystem.Application.Entities;
 using ContactSystem.Application.Repositories.Interfaces;
-using ContactSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+
+namespace ContactSystem.Infrastructure.Repositories;
 
 public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContactsRepository
 {
