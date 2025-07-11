@@ -1,8 +1,7 @@
 ﻿using ContactSystem.Application.Entities;
-using ContactSystem.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactAdministrationSystem.Infrastructure;
+namespace ContactSystem.Infrastructure;
 
 public class GraniteDataContext : DbContext, IGraniteDataContext
 {

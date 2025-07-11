@@ -5,7 +5,7 @@ using ContactSystem.Application.Services;
 using ContactSystem.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Granite.Controllers.Contacts
+namespace ContactSystem.API.Controllers
 {
     [Route("api/v{version:apiVersion}/Contacts")]
     [ApiExplorerSettings(GroupName = "Contacts")]
