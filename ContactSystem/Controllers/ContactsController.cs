@@ -13,13 +13,13 @@ namespace ContactSystem.API.Controllers
     [ApiVersion("1.0")]
     public class ContactsController : ControllerBase
     {
-        private readonly IContactsService _ContactsService;
-        private readonly IOfficesService _officeService;
+        private readonly IContactsService _contactsService;
+        private readonly IOfficesService _officesService;
 
-        public ContactsController(IContactsService ContactsService, OfficeService officeService)
+        public ContactsController(IContactsService contactsService, IOfficesService officesService)
         {
-            _ContactsService = ContactsService;
-            _officeService = officeService;
+            _contactsService = contactsService;
+            _officesService = officesService;
         }
 
         /// <summary>

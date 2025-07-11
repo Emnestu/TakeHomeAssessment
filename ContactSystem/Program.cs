@@ -32,7 +32,7 @@ internal class Program
 
         builder.Services.AddScoped<IContactsRepository, ContactsRepository>();
         builder.Services.AddScoped<IContactsService, ContactsService>();
-        builder.Services.AddScoped<IOfficesService, OfficeService>();
+        builder.Services.AddScoped<IOfficesService, OfficesService>();
 
 
         builder.Services.AddDbContext<GraniteDataContext>(options =>
