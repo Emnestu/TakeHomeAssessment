@@ -1,3 +1,4 @@
+using ContactSystem.Application.Dtos;
 using ContactSystem.Application.Entities;
 using ContactSystem.Application.Repositories.Interfaces;
 using ContactSystem.Application.Services.Interfaces;
@@ -38,8 +39,26 @@ public class ContactsService : IContactsService
         await _ContactsRepository.DeleteAsync(id);
     }
 
-    public async Task<(IEnumerable<ContactEntity>, int)> SearchContactsAsync(Guid officeId, string searchTerm, int page, int pageSize)
+    public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string searchTerm, Guid? officeId, int page, int pageSize)
     {
-        return await _ContactsRepository.SearchContactsAsync(officeId, searchTerm, page, pageSize);
+        var contactEntities = await _ContactsRepository.GetContactsByNameAsync(searchTerm, officeId, page, pageSize);
+        
+        var contactDtos = contactEntities.Select(c =>
+        {
+            var contactDto = new ContactDto
+            {
+                Name = $"{c.FirstName} {c.LastName}",
+                Email = c.Email
+            };
+
+            if (c.ContactOffices != null)
+            {
+                contactDto.OfficeNames = c.ContactOffices.Select(cor => cor.Office.Name);
+            }
+
+            return contactDto;
+        }).ToList();
+
+        return contactDtos;
     }
 }
