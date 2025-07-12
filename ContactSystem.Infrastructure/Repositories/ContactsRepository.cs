@@ -13,20 +13,27 @@ public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContac
         _context = context;
     }
 
-    public async Task<(IEnumerable<ContactEntity>, int)> SearchContactsAsync(Guid officeId, string searchTerm, int page, int pageSize)
+    public async Task<IEnumerable<ContactEntity>> GetContactsByNameAsync(string searchTerm, Guid? officeId, int page, int pageSize)
     {
-        var query = _dbSet
-            .Where(p => (p.FirstName.Contains(searchTerm) || p.LastName.Contains(searchTerm) || p.Email.Contains(searchTerm)) &&
-                        p.ContactOffices.Any(ph => ph.OfficeId == officeId))
-            .OrderBy(p => p.LastName)
-            .ThenBy(p => p.FirstName);
+        var query = _dbSet.Include(p => p.ContactOffices)!
+            .ThenInclude(cor => cor.Office)
+            .Where(p =>
+                p.FirstName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
+                p.LastName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
+                p.Email.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase));
 
-        var totalRecords = await query.CountAsync();
-        var Contacts = await query
+        if (officeId.HasValue)
+        {
+            query = query.Where(p => p.ContactOffices!.Any(ph => ph.OfficeId == officeId));
+        }
+
+        var contacts = await query
+            .OrderBy(p => p.LastName)
+            .ThenBy(p => p.FirstName)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
 
-        return (Contacts, totalRecords);
+        return contacts;
     }
 }

@@ -31,6 +31,7 @@ internal class Program
 
 
         builder.Services.AddScoped<IContactsRepository, ContactsRepository>();
+        builder.Services.AddScoped<IOfficesRepository, OfficesRepository>();
         builder.Services.AddScoped<IContactsService, ContactsService>();
         builder.Services.AddScoped<IOfficesService, OfficesService>();
 

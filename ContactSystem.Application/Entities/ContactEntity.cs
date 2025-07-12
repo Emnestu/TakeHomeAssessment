@@ -8,5 +8,5 @@ public class ContactEntity : Entity<Guid>
 
     public string Email { get; set; } = null!;
 
-    public ICollection<ContactOfficeRelation>? ContactOffices { get; set; }
+    public ICollection<ContactOfficeRelation>? ContactOffices { get; set; } = new List<ContactOfficeRelation>();
 }
