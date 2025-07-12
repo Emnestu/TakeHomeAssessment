@@ -9,9 +9,9 @@ public class ContactsService : IContactsService
 {
     private readonly IContactsRepository _contactsRepository;
 
-    public ContactsService(IContactsRepository contactRepository)
+    public ContactsService(IContactsRepository contactsRepository)
     {
-        _contactsRepository = contactRepository;
+        _contactsRepository = contactsRepository;
     }
 
     public async Task<ContactEntity?> GetContactByIdAsync(Guid id)

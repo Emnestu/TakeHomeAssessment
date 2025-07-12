@@ -6,12 +6,10 @@ namespace ContactSystem.Application.Services
 {
     public class OfficesService : IOfficesService
     {
-        public Guid CurrentOfficeId { get; set; }
         private readonly IOfficesRepository _officesRepository;
 
         public OfficesService(IOfficesRepository officesRepository)
         {
-            CurrentOfficeId = new Guid("ff0c022e-1aff-4ad8-2231-08db0378ac98");
             _officesRepository = officesRepository;
         }
         
