@@ -1,9 +1,8 @@
 ﻿using ContactSystem.Application.Dtos;
 
-namespace ContactSystem.Application.Services.Interfaces
+namespace ContactSystem.Application.Services.Interfaces;
+
+public interface IOfficesService
 {
-    public interface IOfficesService
-    {
-        Task<IEnumerable<OfficeDto>> GetOfficesWithContactsAsync();
-    }
+    Task<IEnumerable<OfficeDto>> GetOfficesWithContactsAsync();
 }

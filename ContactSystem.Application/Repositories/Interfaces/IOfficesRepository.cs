@@ -1,9 +1,8 @@
 using ContactSystem.Application.Entities;
 
-namespace ContactSystem.Application.Repositories.Interfaces
+namespace ContactSystem.Application.Repositories.Interfaces;
+
+public interface IOfficesRepository : IEntitiesRepository<OfficeEntity, Guid>
 {
-    public interface IOfficesRepository : IEntitiesRepository<OfficeEntity, Guid>
-    {
-        Task<IEnumerable<OfficeEntity>> GetOfficesWithContactsAsync();
-    }
+    Task<IEnumerable<OfficeEntity>> GetOfficesWithContactsAsync();
 }
