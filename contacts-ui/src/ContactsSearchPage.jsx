@@ -69,14 +69,14 @@ export default function ContactSearch() {
           className="search-input"
         />
         <select
-          value={selectedOfficeId ?? "all"}
-          onChange={(e) => setSelectedOfficeId(e.target.value)}
+          value={selectedOfficeId || ""}
+          onChange={e => setSelectedOfficeId(e.target.value || null)}
           className="office-select"
         >
-          <option value="all">&lt;All&gt;</option>
-          {offices.map((office) => (
-            <option key={office.officeId} value={office.officeId}>
-              {office.name}
+          <option value="">{"<All>"}</option>
+          {offices.map(o => (
+            <option key={o.officeId} value={o.officeId}>
+              {o.name}
             </option>
           ))}
         </select>
