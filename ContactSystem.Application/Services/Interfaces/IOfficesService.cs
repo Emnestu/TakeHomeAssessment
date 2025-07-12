@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using ContactSystem.Application.Dtos;
+﻿using ContactSystem.Application.Dtos;
 
 namespace ContactSystem.Application.Services.Interfaces
 {

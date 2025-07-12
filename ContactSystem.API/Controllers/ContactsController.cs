@@ -41,7 +41,7 @@ namespace ContactSystem.API.Controllers
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return BadRequest(new ApiResponse<IEnumerable<ContactDto>>(false, "Search term cannot be empty", null));
+                return BadRequest(new ApiResponse<IEnumerable<ContactDto>?>(false, "Search term cannot be empty", null));
             }
 
             var contactDtos = (await _contactsService.SearchContactsAsync(name, officeId, page, pageSize)).ToList();

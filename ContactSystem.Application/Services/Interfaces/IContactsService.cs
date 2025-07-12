@@ -5,7 +5,7 @@ namespace ContactSystem.Application.Services.Interfaces;
 
 public interface IContactsService
 {
-    Task<ContactEntity> GetContactByIdAsync(Guid id);
+    Task<ContactEntity?> GetContactByIdAsync(Guid id);
     Task<IEnumerable<ContactEntity>> GetAllContactsAsync();
     Task AddContactAsync(ContactEntity contact);
     Task UpdateContactAsync(ContactEntity contact);

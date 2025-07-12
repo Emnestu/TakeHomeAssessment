@@ -6,11 +6,8 @@ namespace ContactSystem.Infrastructure.Repositories;
 
 public class OfficesRepository : EntityRepository<OfficeEntity, Guid>, IOfficesRepository
 {
-    private readonly GraniteDataContext _context;
-
     public OfficesRepository(GraniteDataContext context) : base(context)
     {
-        _context = context;
     }
 
     public async Task<IEnumerable<OfficeEntity>> GetOfficesWithContactsAsync()
