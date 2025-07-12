@@ -22,10 +22,14 @@ export default function ContactSearch() {
 
   const fetchContacts = (pageNumber) => {
     const params = new URLSearchParams({
-      searchTerm: searchTerm,
       page: pageNumber.toString(),
       pageSize: pageSize.toString(),
     });
+    
+    if (searchTerm && searchTerm.trim() !== "") {
+      params.append("searchTerm", searchTerm);
+    }
+    
     if (selectedOfficeId) {
       params.append("officeId", selectedOfficeId);
     }

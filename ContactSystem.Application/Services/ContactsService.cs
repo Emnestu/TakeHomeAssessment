@@ -39,7 +39,7 @@ public class ContactsService : IContactsService
         await _contactsRepository.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string searchTerm, Guid? officeId, int page, int pageSize)
+    public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string? searchTerm, Guid? officeId, int page, int pageSize)
     {
         var contactEntities = await _contactsRepository.GetContactsByNameOrEmailAsync(searchTerm, officeId, page, pageSize);
         

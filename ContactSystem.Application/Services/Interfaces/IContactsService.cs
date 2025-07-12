@@ -10,5 +10,5 @@ public interface IContactsService
     Task AddContactAsync(ContactEntity contact);
     Task UpdateContactAsync(ContactEntity contact);
     Task DeleteContactAsync(Guid id);
-    Task<IEnumerable<ContactDto>> SearchContactsAsync(string searchTerm, Guid? officeId, int page, int pageSize);
+    Task<IEnumerable<ContactDto>> SearchContactsAsync(string? searchTerm, Guid? officeId, int page, int pageSize);
 }
