@@ -22,7 +22,7 @@ export default function ContactSearch() {
 
   const fetchContacts = (pageNumber) => {
     const params = new URLSearchParams({
-      name: searchTerm,
+      searchTerm: searchTerm,
       page: pageNumber.toString(),
       pageSize: pageSize.toString(),
     });

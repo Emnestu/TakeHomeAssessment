@@ -23,7 +23,7 @@ public class ContactsController : ControllerBase
     /// <summary>
     /// Retrieves a list of Contacts based on the provided search criteria.
     /// </summary>
-    /// <param name="name">The name to search for Contacts.</param>
+    /// <param name="searchTerm">The name or email to search for Contacts.</param>
     /// <param name="officeId">The GUID of the office to search. If omitted, searches all offices.</param>
     /// <param name="page">The page number for pagination.</param>
     /// <param name="pageSize">The number of records per page.</param>
@@ -37,14 +37,14 @@ public class ContactsController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse<object>), 500)]
     [Produces("application/json")]
     [MapToApiVersion("1.0")]
-    public async Task<ActionResult<ApiResponse<IEnumerable<ContactDto>>>> GetContacts([FromQuery] string name, [FromQuery] Guid? officeId = null, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    public async Task<ActionResult<ApiResponse<IEnumerable<ContactDto>>>> GetContacts([FromQuery] string searchTerm, [FromQuery] Guid? officeId = null, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
-        if (string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(searchTerm))
         {
             return BadRequest(new ApiResponse<IEnumerable<ContactDto>?>(false, "Search term cannot be empty", null));
         }
 
-        var contactDtos = (await _contactsService.SearchContactsAsync(name, officeId, page, pageSize)).ToList();
+        var contactDtos = (await _contactsService.SearchContactsAsync(searchTerm, officeId, page, pageSize)).ToList();
 
         return new ApiResponse<IEnumerable<ContactDto>>(true, "Contacts retrieved successfully",  contactDtos, contactDtos.Count);
     }
