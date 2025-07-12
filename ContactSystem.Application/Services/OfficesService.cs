@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using ContactSystem.Application.Dtos;
+﻿using ContactSystem.Application.Dtos;
 using ContactSystem.Application.Repositories.Interfaces;
 using ContactSystem.Application.Services.Interfaces;
 

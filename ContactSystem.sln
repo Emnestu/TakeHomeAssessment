@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSystem.API", "ContactSystem\ContactSystem.API.csproj", "{B3AD393D-5ED2-4E99-BCF9-6F1668E66B48}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactSystem.Infra", "ContactSystem.Infra", "{2D3C4964-948D-4A28-B019-1659E419755C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSystem.API", "ContactSystem.API\ContactSystem.API.csproj", "{B3AD393D-5ED2-4E99-BCF9-6F1668E66B48}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSystem.Infrastructure", "ContactSystem.Infrastructure\ContactSystem.Infrastructure.csproj", "{3225823F-02FF-44EA-87BF-39E99F8E237F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactSystem.Application", "ContactSystem.Application", "{65A388FB-4A34-4BCE-A40A-887B418705AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSystem.Application", "ContactSystem.Application\ContactSystem.Application.csproj", "{F538F9AB-08A0-4D55-B71D-5A0FDD545B0B}"
 EndProject
@@ -36,8 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3225823F-02FF-44EA-87BF-39E99F8E237F} = {2D3C4964-948D-4A28-B019-1659E419755C}
-		{F538F9AB-08A0-4D55-B71D-5A0FDD545B0B} = {65A388FB-4A34-4BCE-A40A-887B418705AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82ADB241-AECC-4322-A2E0-70206B9AAE5C}

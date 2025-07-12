@@ -7,41 +7,41 @@ namespace ContactSystem.Application.Services;
 
 public class ContactsService : IContactsService
 {
-    private readonly IContactsRepository _ContactsRepository;
+    private readonly IContactsRepository _contactsRepository;
 
-    public ContactsService(IContactsRepository ContactRepository)
+    public ContactsService(IContactsRepository contactRepository)
     {
-        _ContactsRepository = ContactRepository;
+        _contactsRepository = contactRepository;
     }
 
-    public async Task<ContactEntity> GetContactByIdAsync(Guid id)
+    public async Task<ContactEntity?> GetContactByIdAsync(Guid id)
     {
-        return await _ContactsRepository.GetByIdAsync(id);
+        return await _contactsRepository.GetByIdAsync(id);
     }
 
     public async Task<IEnumerable<ContactEntity>> GetAllContactsAsync()
     {
-        return await _ContactsRepository.GetAllAsync();
+        return await _contactsRepository.GetAllAsync();
     }
 
-    public async Task AddContactAsync(ContactEntity Contact)
+    public async Task AddContactAsync(ContactEntity contact)
     {
-        await _ContactsRepository.AddAsync(Contact);
+        await _contactsRepository.AddAsync(contact);
     }
 
-    public async Task UpdateContactAsync(ContactEntity Contact)
+    public async Task UpdateContactAsync(ContactEntity contact)
     {
-        await _ContactsRepository.UpdateAsync(Contact);
+        await _contactsRepository.UpdateAsync(contact);
     }
 
     public async Task DeleteContactAsync(Guid id)
     {
-        await _ContactsRepository.DeleteAsync(id);
+        await _contactsRepository.DeleteAsync(id);
     }
 
     public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string searchTerm, Guid? officeId, int page, int pageSize)
     {
-        var contactEntities = await _ContactsRepository.GetContactsByNameAsync(searchTerm, officeId, page, pageSize);
+        var contactEntities = await _contactsRepository.GetContactsByNameAsync(searchTerm, officeId, page, pageSize);
         
         var contactDtos = contactEntities.Select(c =>
         {

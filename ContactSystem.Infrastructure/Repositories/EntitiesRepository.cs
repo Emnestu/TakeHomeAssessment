@@ -15,7 +15,7 @@ namespace ContactSystem.Infrastructure.Repositories
             _dbSet = _context.Set<TEntity>();
         }
 
-        public async Task<TEntity> GetByIdAsync(TKey id)
+        public async Task<TEntity?> GetByIdAsync(TKey id)
         {
             return await _dbSet.FindAsync(id);
         }
