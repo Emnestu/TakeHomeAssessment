@@ -10,14 +10,13 @@ public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContac
     {
     }
 
-    public async Task<IEnumerable<ContactEntity>> GetContactsByNameAsync(string searchTerm, Guid? officeId, int page, int pageSize)
+    public async Task<IEnumerable<ContactEntity>> GetContactsByNameOrEmailAsync(string searchTerm, Guid? officeId, int page, int pageSize)
     {
         var query = _dbSet.Include(p => p.ContactOffices)!
             .ThenInclude(cor => cor.Office)
             .Where(p =>
-                p.FirstName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
-                p.LastName.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) ||
-                p.Email.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase));
+                ((p.FirstName ?? "") + " " + (p.LastName ?? "")).ToLower().Contains(searchTerm.ToLower()) ||
+                p.Email.ToLower().Contains(searchTerm.ToLower()));
 
         if (officeId.HasValue)
         {

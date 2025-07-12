@@ -41,7 +41,7 @@ public class ContactsService : IContactsService
 
     public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string searchTerm, Guid? officeId, int page, int pageSize)
     {
-        var contactEntities = await _contactsRepository.GetContactsByNameAsync(searchTerm, officeId, page, pageSize);
+        var contactEntities = await _contactsRepository.GetContactsByNameOrEmailAsync(searchTerm, officeId, page, pageSize);
         
         var contactDtos = contactEntities.Select(c =>
         {
