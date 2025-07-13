@@ -35,8 +35,8 @@ public class ContactsController : ControllerBase
     [MapToApiVersion("1.0")]
     public async Task<ActionResult<ApiResponse<IEnumerable<ContactDto>>>> GetContacts([FromQuery] string? searchTerm, [FromQuery] Guid? officeId = null, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
-        var contactDtos = (await _contactsService.SearchContactsAsync(searchTerm, officeId, page, pageSize)).ToList();
+        var pagedResult = await _contactsService.SearchContactsAsync(searchTerm, officeId, page, pageSize);
 
-        return new ApiResponse<IEnumerable<ContactDto>>(true, "Contacts retrieved successfully",  contactDtos, contactDtos.Count);
+        return new ApiResponse<IEnumerable<ContactDto>>(true, "Contacts retrieved successfully", pagedResult.Items, pagedResult.TotalCount);
     }
 }
