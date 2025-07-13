@@ -62,6 +62,11 @@ This solution is composed of:
 
 ---
 
+## ℹ️ Development Notes
+
+For local development with mock data, you can switch to the [`local/dev-test-data`](https://github.com/Emnestu/TakeHomeAssessment/tree/feature/dev-data-seeder) branch. It adds a test data seeder that populates the database with sample offices and contacts.
+
+
 ### ✅ Key Design Decisions & Tradeoffs
 
 1. **The backend APIs are tightly coupled to the frontend**, simplifying development and aligning with the task, which emphasized providing read access over full CRUD. It's assumed that the company already has internal tools to manage this data.
