@@ -1,3 +1,4 @@
+using ContactSystem.Application.Dtos;
 using ContactSystem.Application.Entities;
 using ContactSystem.Application.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContac
     {
     }
 
-    public async Task<IEnumerable<ContactEntity>> GetContactsByNameOrEmailAsync(string? searchTerm, Guid? officeId, int page, int pageSize)
+    public async Task<PagedResult<ContactEntity>> GetContactsByNameOrEmailAsync(string? searchTerm, Guid? officeId, int page, int pageSize)
     {
         var query = _dbSet.Include(p => p.ContactOffices)!
             .ThenInclude(cor => cor.Office)
@@ -28,6 +29,8 @@ public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContac
             query = query.Where(p => p.ContactOffices!.Any(ph => ph.OfficeId == officeId));
         }
 
+        var totalCount = await query.CountAsync();
+
         var contacts = await query
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
@@ -35,6 +38,10 @@ public class ContactsRepository : EntityRepository<ContactEntity, Guid>, IContac
             .Take(pageSize)
             .ToListAsync();
 
-        return contacts;
+        return new PagedResult<ContactEntity>
+        {
+            Items = contacts,
+            TotalCount = totalCount
+        };
     }
 }

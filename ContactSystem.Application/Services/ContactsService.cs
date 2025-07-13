@@ -39,11 +39,11 @@ public class ContactsService : IContactsService
         await _contactsRepository.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<ContactDto>> SearchContactsAsync(string? searchTerm, Guid? officeId, int page, int pageSize)
+    public async Task<PagedResult<ContactDto>> SearchContactsAsync(string? searchTerm, Guid? officeId, int page, int pageSize)
     {
-        var contactEntities = await _contactsRepository.GetContactsByNameOrEmailAsync(searchTerm, officeId, page, pageSize);
+        var pagedContactEntities = await _contactsRepository.GetContactsByNameOrEmailAsync(searchTerm, officeId, page, pageSize);
         
-        var contactDtos = contactEntities.Select(c =>
+        var contactDtos = pagedContactEntities.Items.Select(c =>
         {
             var contactDto = new ContactDto
             {
@@ -59,6 +59,10 @@ public class ContactsService : IContactsService
             return contactDto;
         }).ToList();
 
-        return contactDtos;
+        return new PagedResult<ContactDto>
+        {
+            Items = contactDtos,
+            TotalCount = pagedContactEntities.TotalCount
+        };
     }
 }
