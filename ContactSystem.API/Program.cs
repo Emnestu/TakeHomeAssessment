@@ -90,6 +90,8 @@ internal class Program
 
             // In real world do a proper migration, but here's the test data
 
+            TestDataSeeder.SeedWithTestData(dbContext);
+
             dbContext.Offices.Add(new OfficeEntity
             {
                 Id = new Guid("ff0c022e-1aff-4ad8-2231-08db0378ac98"),
