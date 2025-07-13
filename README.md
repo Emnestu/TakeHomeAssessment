@@ -1,3 +1,6 @@
+> ⚠️ This branch is intended for local development and testing only.
+> It adds mock data generation that should not be merged to `main`.
+
 # Contact Search Web App
 
 This repository contains a simple proof-of-concept web application built as part of a coding challenge. The task was to create a lightweight and user-friendly solution to help users find key contacts at office locations.
